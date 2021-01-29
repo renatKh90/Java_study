@@ -2,18 +2,13 @@ package Lesson1.online;
 
 public class HomeWork1 {
     public static void main(String[] args) {
-        System.out.println("Результат работы первого задания");
-        System.out.println(taskOne(4, 7, 8, 9));
-        System.out.println();
-        System.out.println("Результат работы второго задания");
-        System.out.println(taskTwo(5, 6));
-        System.out.println();
-        System.out.println("Результат работы третьего задания");
-        System.out.println(taskThree(0));
-        System.out.println();
-        System.out.println("Результат работы четвертого задания");
-        System.out.println(taskFour("Ренат"));
-        System.out.println();
+        System.out.println("Результат работы первого задания: a * (b + (c / d)) " + taskOne(4, 7, 8, 9));
+        System.out.println("Результат работы второго задания: " + taskTwo(5, 6));
+        taskThree(0);
+        System.out.println("Результат работы четвертого задания: " + taskFour("Ренат"));
+        System.out.print("Результат работы пятого задания: " );
+        taskFive(2020);
+
 
     }
 
@@ -31,18 +26,26 @@ public class HomeWork1 {
     }
 
     //Задание 3
-    public static int taskThree(int i) {
+    public static void taskThree(int i) {
         if (i>=0) {
-            System.out.println("Введено положительное число");
+            System.out.println("Результат работы третьего задания: Введено положительное число");
         } else {
-            System.out.println("Введено отрицательное число");
+            System.out.println("Результат работы третьего задания: Введено отрицательное число");
         }
-        return i;
+
     }
 
 
     //Задание 4
-    public static String taskFour(String name) {
+   public static String taskFour(String name) {
         return "Привет " + name;
     }
+
+    //Задание 5
+
+   public static void taskFive (int year) {
+       if (!(year % 4 == 0) || ((year % 100 == 0) && !(year % 400 == 0))) System.out.println(year + " Невисокосный");
+       else System.out.println(year + " Високосный");
+    }
+
 }
