@@ -7,7 +7,7 @@ public class HomeWork1 {
         taskThree(0);
         System.out.println("Результат работы четвертого задания: " + taskFour("Ренат"));
         System.out.print("Результат работы пятого задания: " );
-        taskFive(2020);
+        taskFive(1990);
 
 
     }
