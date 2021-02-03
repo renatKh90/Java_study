@@ -60,6 +60,17 @@ public class HomeWork2 {
 
 
         // Задание 5*
+        System.out.println("\nЗадание 5");
+        int[][] myArrFive = new int[10][10];
+        for (int i = 0; i < myArrFive.length; i++) {
+            for (int j = 0, x = myArrFive[i].length - 1; j < myArrFive[i].length; j++, x--) {
+                if (i == j || i == x) myArrFive[i][j] = 1;
+                System.out.print(myArrFive[i][j] + " ");
+            }
+            System.out.println();
+
+        }
+
 
     }
 
