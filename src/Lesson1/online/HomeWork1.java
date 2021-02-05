@@ -14,7 +14,7 @@ public class HomeWork1 {
 
 
     // Задание 1
-    public static float taskOne(int a, int b, int c, int d) {
+    public static float taskOne(int a, int b, float c, float d) {
         float e = a * (b + (c / d));
         return (float) e;
     }
