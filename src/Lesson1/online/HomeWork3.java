@@ -58,17 +58,50 @@ public class HomeWork3 {
         return false;
     }
 
-    public static boolean checkWin(char symbol) {
-        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) return true;
-        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) return true;
-        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) return true;
-        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) return true;
-        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) return true;
-        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) return true;
-        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) return true;
-        if (map[2][0] == symbol && map[1][1] == symbol && map[0][2] == symbol) return true;
-        return false;
+//    public static boolean checkWin(char symbol) {
+//        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) return true;
+//        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) return true;
+//        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) return true;
+//        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) return true;
+//        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) return true;
+//        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) return true;
+//        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) return true;
+//        if (map[2][0] == symbol && map[1][1] == symbol && map[0][2] == symbol) return true;
+//        return false;
+//    }
+
+    public static boolean checkWin2(char symbol) {
+        int diag1, diag2, hor, ver;
+        for (int i = 0; i< size; i++) {
+            hor = 0; ver = 0;
+            for (int j = 0; j < size; j++) {
+                if(map[i][j] == symbol){
+                    hor++;
+                }
+                if (map[j][i] == symbol) {
+                    ver++;
+                }
+            }
+            if (hor == size || ver == size) {
+                return true;
+            }
+
+        }
+        diag1 = 0; diag2 = 0;
+        for (int i = 0; i <size; i++) {
+            if(map[i][i] == symbol) {
+                diag1++;
+            }
+            if(map[i][size - i - 1] == symbol) {
+                diag2++;
+            }
+
+        }
+        if (diag1 == size || diag2 == size) {
+            return true;
+        } return false;
     }
+
 
     public static boolean isMapFull() {
         for (int i = 0; i < size; i++) {
@@ -84,7 +117,7 @@ public class HomeWork3 {
         while (true) {
             humanTurn();
             printMap();
-            if (checkWin(krestik)) {
+            if (checkWin2(krestik)) {
                 System.out.println("Поздравляем! Вы победили");
                 break;
             }
@@ -94,7 +127,7 @@ public class HomeWork3 {
             }
             aiTurn();
             printMap();
-            if (checkWin(nolik)) {
+            if (checkWin2(nolik)) {
                 System.out.println("К сожалению компутер выиграл. Не растраивайтесь.");
             }
             if (isMapFull()) {
