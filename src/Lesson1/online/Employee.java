@@ -9,19 +9,24 @@ package Lesson1.online;
 7** При создании экземпляра класса Сотрудник присваивать ему уникальный порядковый номер.
  */
 
-public class Employer {
+public class Employee {
     private static String fio;
     private static String position;
     private static String phone;
     private static int salary;
     private static int age;
 
-    Employer(String fio, String position, String phone, int salary, int age) {
+    Employee(String fio, String position, String phone, int salary, int age) {
         this.fio = fio;
         this.position = position;
         this.phone = phone;
         this.salary = salary;
         this.age = age;
+    }
+
+    public static void print() {
+        System.out.println("Сотрудник \n" + "ФИО: " + getFIO() + "\nДолжность: " + getPosition() +
+                "\nТелефон: " + getPhone() + "\nЗарплата: " + getSalary() + "\nВозраст: " + getAge());
     }
 
     public static String getFIO() {
