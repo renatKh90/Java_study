@@ -10,11 +10,11 @@ package Lesson1.online;
  */
 
 public class Employee {
-    private static String fio;
-    private static String position;
-    private static String phone;
-    private static int salary;
-    private static int age;
+    private String fio;
+    private String position;
+    private String phone;
+    private int salary;
+    private int age;
 
     Employee(String fio, String position, String phone, int salary, int age) {
         this.fio = fio;
@@ -24,30 +24,39 @@ public class Employee {
         this.age = age;
     }
 
-    public static void print() {
+    public void print() {
         System.out.println("Сотрудник \n" + "ФИО: " + getFIO() + "\nДолжность: " + getPosition() +
                 "\nТелефон: " + getPhone() + "\nЗарплата: " + getSalary() + "\nВозраст: " + getAge());
     }
 
-    public static String getFIO() {
+    //6* Создать метод, повышающий зарплату всем сотрудникам старше 35 лет на 10000;
+    public void increaseSalary() {
+        if(getAge()>35) {
+            setSalary(salary+10000);
+        }
+    }
+
+    public String getFIO() {
         return fio;
     }
 
-    public static String getPosition() {
+    public String getPosition() {
         return position;
     }
 
-    public static String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public static int getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public static int getAge() {
+    public int getAge() {
         return age;
     }
 
-
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 }
