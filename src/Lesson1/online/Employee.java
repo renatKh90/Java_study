@@ -10,12 +10,14 @@ package Lesson1.online;
  */
 
 public class Employee {
+    //1 Создать класс "Сотрудник" с полями: ФИО, должность, телефон, зарплата, возраст;
     private String fio;
     private String position;
     private String phone;
     private int salary;
     private int age;
 
+    //2 Конструктор класса должен заполнять эти поля при создании объекта;
     Employee(String fio, String position, String phone, int salary, int age) {
         this.fio = fio;
         this.position = position;
@@ -24,8 +26,9 @@ public class Employee {
         this.age = age;
     }
 
+    //4 Вывести при помощи методов из пункта 3 ФИО и должность. (решил вывести все поля)
     public void print() {
-        System.out.println("Сотрудник \n" + "ФИО: " + getFIO() + "\nДолжность: " + getPosition() +
+        System.out.println("Сотрудник\n" + "ФИО: " + getFIO() + "\nДолжность: " + getPosition() +
                 "\nТелефон: " + getPhone() + "\nЗарплата: " + getSalary() + "\nВозраст: " + getAge());
     }
 
@@ -35,6 +38,8 @@ public class Employee {
             setSalary(salary+10000);
         }
     }
+
+    //3 Внутри класса «Сотрудник» написать методы, которые возвращают значение каждого поля; (геттеры)
 
     public String getFIO() {
         return fio;
@@ -56,6 +61,7 @@ public class Employee {
         return age;
     }
 
+    //сеттер
     public void setSalary(int salary) {
         this.salary = salary;
     }
