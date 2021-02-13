@@ -16,6 +16,9 @@ public class Employee {
     private String phone;
     private int salary;
     private int age;
+    private int uid;
+
+    private static int id = 0;
 
     //2 Конструктор класса должен заполнять эти поля при создании объекта;
     Employee(String fio, String position, String phone, int salary, int age) {
@@ -24,11 +27,12 @@ public class Employee {
         this.phone = phone;
         this.salary = salary;
         this.age = age;
+        this.uid = ++id;
     }
 
     //4 Вывести при помощи методов из пункта 3 ФИО и должность. (решил вывести все поля)
     public void print() {
-        System.out.println("Сотрудник\n" + "ФИО: " + getFIO() + "\nДолжность: " + getPosition() +
+        System.out.println("Сотрудник № " + getUid() + "\nФИО: " + getFIO() + "\nДолжность: " + getPosition() +
                 "\nТелефон: " + getPhone() + "\nЗарплата: " + getSalary() + "\nВозраст: " + getAge());
     }
 
@@ -59,6 +63,9 @@ public class Employee {
 
     public int getAge() {
         return age;
+    }
+    public int getUid(){
+        return uid;
     }
 
     //сеттер
