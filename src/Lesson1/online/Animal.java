@@ -14,18 +14,14 @@ public class Animal {
     protected double jumpLimit;
     protected String name;
     protected int swimLimit;
+    protected boolean canSwim;
 
-    public Animal(int runLimit, double jumpLimit, String name, int swimLimit) {
+    public Animal(int runLimit, double jumpLimit, String name, boolean canSwim, int swimLimit) {
         this.runLimit = runLimit;
         this.jumpLimit = jumpLimit;
         this.name = name;
         this.swimLimit = swimLimit;
-    }
-
-    public Animal(int runLimit, double jumpLimit, String name) {
-        this.runLimit = runLimit;
-        this.jumpLimit = jumpLimit;
-        this.name = name;
+        this.canSwim = canSwim;
     }
 
     protected void run(int runValue) {
@@ -45,11 +41,17 @@ public class Animal {
     }
 
     protected void swim(int swimValue) {
-        if(swimValue <= swimLimit) {
-            System.out.println(name + " проплыл " + swimValue + " метров");
+        if(canSwim == true) {
+            if (swimValue <= swimLimit) {
+                System.out.println(name + " проплыл " + swimValue + " метров");
+            } else {
+                System.out.println(name + " не смог проплыть " + swimValue + " метров");
+            }
+
         } else {
-            System.out.println(name + " не смог проплыть " + swimValue + " метров");
+            System.out.println(name + " не умеет плавать ");
         }
+
     }
 
 
