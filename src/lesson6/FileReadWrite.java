@@ -7,21 +7,23 @@ package lesson6;
 Написать программу, которая проверяет присутствует ли указанное пользователем слово в файле.
  Написать метод, проверяющий, есть ли указанное слово в папке
  */
+/**
+ * Created by geekbrains student Renat Khanafiev
+ */
 
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileReadWrite {
 
-    static byte[] str1 = "Hello! I am first string. Be careful when doing homework. All exception have to be handled".getBytes(StandardCharsets.US_ASCII);
-    static byte[] str2 = "Hello! I am second string. Do not forget to glew me with first string and write to the third file".getBytes(StandardCharsets.US_ASCII);
+    static byte[] str1 = "Hello! I am first string. Be careful when doing homework. All exception have to be handled".getBytes(StandardCharsets.UTF_8);
+    static byte[] str2 = "Hello! I am second string. Do not forget to glew me with first string and write to the third file".getBytes(StandardCharsets.UTF_8);
     static String file1 = "testFile1.txt";
     static String file2 = "testFile2.txt";
     static String file3 = "testFile3.txt";
+    static String word = "Hello!";
 
     public static void main(String[] args) {
 
@@ -30,6 +32,14 @@ public class FileReadWrite {
 
         concatenateFiles(new String[]{file1, file2}, file3);
 
+        try {
+            if (checkWordPresents(file1, word) == true) {
+                System.out.println("Слово " + word + " содержится в файле " + file1);
+            } else
+            System.out.println("Слово " + word + " не содержится в файле " + file1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void createFile(String name, byte[] str) {
@@ -51,10 +61,10 @@ public class FileReadWrite {
         try {
             FileOutputStream out = new FileOutputStream(newFileName);
             byte[] buffer = new byte[2048];
-            for(String name : names) {
+            for (String name : names) {
                 FileInputStream in = new FileInputStream(name);
                 int i = 0;
-                while ( (i = in.read(buffer)) >= 0)
+                while ((i = in.read(buffer)) >= 0)
                     out.write(buffer, 0, i);
                 in.close();
             }
@@ -62,4 +72,11 @@ public class FileReadWrite {
             System.out.println(e.getMessage());
         }
     }
+
+    public static boolean checkWordPresents(String file, String word) throws IOException {
+        boolean isMatched = Files.lines(Paths.get(file)).anyMatch(word::equals);
+        return isMatched;
+    }
 }
+
+
