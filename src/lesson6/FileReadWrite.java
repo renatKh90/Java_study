@@ -27,9 +27,8 @@ public class FileReadWrite {
 
         createFile(file1, str1);
         createFile(file2, str2);
-        readFile(file1);
-        readFile(file2);
-        glewFiles(file1, file3);
+
+        concatenateFiles(new String[]{file1, file2}, file3);
 
     }
 
@@ -48,28 +47,17 @@ public class FileReadWrite {
         }
     }
 
-    public static void readFile(String name) {
+    public static void concatenateFiles(String[] names, String newFileName) {
         try {
-            FileInputStream file = new FileInputStream(name);
-            int outputChar;
-            while ((outputChar = file.read()) != -1) {
-                System.out.print((char) outputChar);
+            FileOutputStream out = new FileOutputStream(newFileName);
+            byte[] buffer = new byte[2048];
+            for(String name : names) {
+                FileInputStream in = new FileInputStream(name);
+                int i = 0;
+                while ( (i = in.read(buffer)) >= 0)
+                    out.write(buffer, 0, i);
+                in.close();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-
-    public static void glewFiles(String name, String name2) {
-        try {
-            FileInputStream file = new FileInputStream(name);
-            FileOutputStream file2 = new FileOutputStream(name2);
-            byte[] buffer = new byte[file.available()];
-            file.read(buffer, 0, buffer.length);
-            file2.write(buffer, 0, buffer.length);
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
