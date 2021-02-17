@@ -12,18 +12,18 @@ package lesson6;
  */
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 public class FileReadWrite {
 
-    static byte[] str1 = "Hello! I am first string. Be careful when doing homework. All exception have to be handled".getBytes(StandardCharsets.UTF_8);
-    static byte[] str2 = "Hello! I am second string. Do not forget to glew me with first string and write to the third file".getBytes(StandardCharsets.UTF_8);
+    static byte[] str1 = "Hello! I am first string. Be careful when doing homework. All exception have to be handled".getBytes();
+    static byte[] str2 = "Hello! I am second string. Do not forget to glew me with first string and write to the third file".getBytes();
     static String file1 = "testFile1.txt";
     static String file2 = "testFile2.txt";
     static String file3 = "testFile3.txt";
-    static String word = "Hello!";
+    static String word1 = "Hello!";
+    static String word2 = "KDjksdjsa!";
+
 
     public static void main(String[] args) {
 
@@ -32,14 +32,11 @@ public class FileReadWrite {
 
         concatenateFiles(new String[]{file1, file2}, file3);
 
-        try {
-            if (checkWordPresents(file1, word) == true) {
-                System.out.println("Слово " + word + " содержится в файле " + file1);
-            } else
-            System.out.println("Слово " + word + " не содержится в файле " + file1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        searchWord(file1, word1);
+//        searchWord(file2, word2);
+
+
+
     }
 
     public static void createFile(String name, byte[] str) {
@@ -69,14 +66,40 @@ public class FileReadWrite {
                 in.close();
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error! Cause: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public static boolean checkWordPresents(String file, String word) throws IOException {
-        boolean isMatched = Files.lines(Paths.get(file)).anyMatch(word::equals);
-        return isMatched;
+    public static void searchWord(String file, String word) {
+        try {
+            FileInputStream input = new FileInputStream(file);
+            int symbol = 0;
+            int i = 0;
+            byte[] wordBytes = word.getBytes();
+            do {
+                symbol = input.read();
+                if (wordBytes[i] == symbol) {
+                    i++;
+                    if (i == wordBytes.length) {
+                        System.out.println("Слово " + word + " присутствует в файле " + file);
+                    }
+                } else {
+                    i = 0;
+                }
+            } while (symbol != -1);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found! Cause: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error! Cause: " + e.getMessage());
+            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Индекс вышел за пределы массива " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
+
 
 
