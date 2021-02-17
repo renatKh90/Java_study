@@ -75,19 +75,19 @@ public class FileReadWrite {
         try {
             FileInputStream input = new FileInputStream(file);
             int symbol = 0;
-            int i = 0;
-            byte[] wordBytes = word.getBytes();
+            int i = 0; // объявляем переменную для работы с индексом в массиве wordBytes
+            byte[] wordBytes = word.getBytes(); // объявлеям массив где будем хранить набор байтов приходящий из потока
             do {
-                symbol = input.read();
-                if (wordBytes[i] == symbol) {
-                    i++;
-                    if (i == wordBytes.length) {
-                        System.out.println("Слово " + word + " присутствует в файле " + file);
+                symbol = input.read(); // читаем из входящего потока байты первого символа, записываем в переменную
+                if (wordBytes[i] == symbol) { // если первый элемент массива равен символу
+                    i++; // делаем инкремент чтобы пройти на следующий шаг и проверить байты второго символа и т.д
+                    if (i == wordBytes.length) { // если индекс равен длине массива
+                        System.out.println("Слово " + word + " присутствует в файле " + file); // слово найдено, печатаем в консоль
                     }
-                } else {
+                } else { // если биты не совпадают, сбрасываем i на 0 потому что поток прислал другую буквy
                     i = 0;
                 }
-            } while (symbol != -1);
+            } while (symbol != -1); // все это делать то дех пор пока поток не закончит присылать байты
         } catch (FileNotFoundException e) {
             System.out.println("File not found! Cause: " + e.getMessage());
             e.printStackTrace();
