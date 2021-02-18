@@ -33,7 +33,7 @@ public class FileReadWrite {
         concatenateFiles(new String[]{file1, file2}, file3);
 
         searchWord(file1, word1);
-//        searchWord(file2, word2);
+        searchWord(file2, word2);
 
 
 
@@ -87,6 +87,9 @@ public class FileReadWrite {
                     }
                 } else { // если биты не совпадают, сбрасываем i на 0 потому что поток прислал другую буквy
                     i = 0;
+                    System.out.println("Слово " + word + " не присутствует в файле " + file);
+                    break;
+
                 }
             }
         } catch (FileNotFoundException e) {
