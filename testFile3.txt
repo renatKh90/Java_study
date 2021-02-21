@@ -1,0 +1,1 @@
+Hello! I am first string. Be careful when doing homework. All exception have to be handledHello! I am second string. Do not forget to glew me with first string and write to the third file
